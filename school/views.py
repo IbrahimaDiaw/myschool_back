@@ -6,6 +6,7 @@ from .serializers import (EtablissementSerializer, BatimentSerializer, SalleSeri
              ClasseSerializer,NiveauSerializer,AnneeSerializer)
 from django.http import HttpResponse
 from .permissions import IsAuthorOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class EtablissementViewList(generics.ListCreateAPIView):
@@ -38,26 +39,32 @@ class SalleViewDetail(generics.RetrieveUpdateDestroyAPIView):
 class ClasseViewList(generics.ListCreateAPIView):
     queryset  = Classe.objects.all()
     serializer_class = ClasseSerializer
+    permission_classes = [IsAuthenticated]
 
 class ClasseViewElement(generics.RetrieveUpdateDestroyAPIView):
     queryset  = Classe.objects.all()
     serializer_class = ClasseSerializer
+    permission_classes = [IsAuthenticated]
 
 class AnneeViewList(generics.ListCreateAPIView):
     queryset  = AnneeScolaire.objects.all()
     serializer_class = AnneeSerializer
+    permission_classes = [IsAuthenticated]
 
 class AnneeViewElement(generics.RetrieveUpdateDestroyAPIView):
     queryset  = AnneeScolaire.objects.all()
     serializer_class = AnneeSerializer
+    permission_classes = [IsAuthenticated]
 
 class NiveauViewList(generics.ListCreateAPIView):
     queryset  = Niveau.objects.all()
     serializer_class = NiveauSerializer
+    permission_classes = [IsAuthenticated]
 
 class NiveauViewElement(generics.RetrieveUpdateDestroyAPIView):
     queryset  = Niveau.objects.all()
     serializer_class = NiveauSerializer
+    permission_classes = [IsAuthenticated]
 
 
 def RemplireBAse(request):
