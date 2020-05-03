@@ -3,7 +3,7 @@ from rest_framework import generics, permissions
 # from .models import Etablissement, Batiment, Salle
 from .models import *
 from .serializers import (EtablissementSerializer, BatimentSerializer, SalleSerializer,
-             ClasseSerializer,NiveauSerializer,AnneeSerializer)
+             ClasseSerializer,NiveauSerializer,AnneeSerializer, RetardSerializer,AbsenceSerializer)
 from django.http import HttpResponse
 from .permissions import IsAuthorOrReadOnly
 from rest_framework.permissions import IsAuthenticated
@@ -64,6 +64,27 @@ class NiveauViewList(generics.ListCreateAPIView):
 class NiveauViewElement(generics.RetrieveUpdateDestroyAPIView):
     queryset  = Niveau.objects.all()
     serializer_class = NiveauSerializer
+    permission_classes = [IsAuthenticated]
+
+class RetardViewList(generics.ListCreateAPIView):
+    queryset = Retard.objects.all()
+    serializer_class = RetardSerializer
+    permission_classes = [IsAuthenticated]
+
+class RetardViewElement(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Retard.objects.all()
+    serializer_class = RetardSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class AbsenceViewList(generics.ListCreateAPIView):
+    queryset = Absence.objects.all()
+    serializer_class = AbsenceSerializer
+    permission_classes = [IsAuthenticated]
+
+class AbsenceViewElement(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Absence.objects.all()
+    serializer_class = AbsenceSerializer
     permission_classes = [IsAuthenticated]
 
 

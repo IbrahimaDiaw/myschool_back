@@ -2,7 +2,7 @@ from rest_framework import serializers
 from school.models import Etablissement
 from school.models import Batiment
 from school.models import Salle
-from .models import AnneeScolaire, Classe, Niveau
+from .models import AnneeScolaire, Classe, Niveau, Retard,Absence
 
 class EtablissementSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,3 +46,14 @@ class NiveauSerializer(serializers.ModelSerializer):
         class Meta:
             model = Niveau
             fields = '__all__'
+
+#Serialiastion de la classe Retard
+class RetardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Retard
+        fields = '__all__'
+
+class AbsenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Absence
+        fields = '__all__'
