@@ -1,8 +1,11 @@
 from django.urls import path
 from .views import *
-
+from .router import router
+from django.conf.urls import include, url
 
 urlpatterns= [
+    path('', include(router.urls)),
+
     path('etablissement/', EtablissementViewList.as_view()),
     path('etablissement/<int:pk>/', EtablissementViewEdit.as_view()),
 
@@ -27,8 +30,10 @@ urlpatterns= [
     path('absence', AbsenceViewList.as_view()),
     path('absence/<int:pk>', AbsenceViewElement.as_view()),
 
+    path('eleves/', EleveViewList.as_view()),
+    path('eleves/<int>:pk', ElevesViewElement.as_view()),
 
     path('remplir/', RemplireBAse),
 
-
+    path('api-auth/', include('rest_framework.urls')),
 ]

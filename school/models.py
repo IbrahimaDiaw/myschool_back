@@ -171,3 +171,13 @@ class Absence(models.Model):
     eleve = models.ForeignKey(Eleve, on_delete = models.CASCADE, null = True)
     emploitemps = models.ForeignKey(Emploi_temps, on_delete = models.CASCADE)
     prof = models.ForeignKey(Professeur, on_delete = models.CASCADE, null = True)
+
+
+class Compte(models.Model):
+    user =models.OneToOneField(User, on_delete = models.CASCADE, related_name= "compte")
+    detenteur = models.IntegerField(null=True)
+    profil = models.CharField(max_length = 80, null = True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = [['detenteur', 'profil']]

@@ -2,7 +2,10 @@ from rest_framework import serializers
 from school.models import Etablissement
 from school.models import Batiment
 from school.models import Salle
-from .models import AnneeScolaire, Classe, Niveau, Retard,Absence
+from .models import AnneeScolaire, Classe, Niveau, Retard,Absence, Compte,Eleve
+from django.contrib.auth.models import Permission, User, Group
+from django.contrib.contenttypes.models import ContentType
+
 
 class EtablissementSerializer(serializers.ModelSerializer):
     class Meta:
@@ -57,3 +60,58 @@ class AbsenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Absence
         fields = '__all__'
+
+#Serialisation de la classe Eleve
+class EleveSerializer(serializers.HyperlinkedModelSerializer):
+        class Meta:
+            model = Eleve
+            fields = ['url', 'id', 'photo', 'prenom',
+                  'nom', 'sexe', 'dateNaissance', 'lieuNaissance', 'adresse',
+                  'tel', 'nationnalite', 'etatSante', 'parcours', 'classe', 'parent', 'createdAt']
+
+#Serialisation de la classe Compte
+class CompteSerializer(serializers.HyperlinkedModelSerializer):
+        class Meta:
+            model = Compte
+            fields = ['url', 'id', 'user', 'detenteur','profil', 'createdAt']
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    compte = serializers.HyperlinkedRelatedField( view_name='compte-detail', read_only=True)
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+    class Meta:
+        model = User
+        fields = ('url', 'id', 'username', 'compte','password')
+        extra_kwargs = {'password': {'write_only': True}}
+
+class PermissionSerializer(serializers.HyperlinkedModelSerializer):
+
+    # def create(self, validated_data):
+    #     return User.objects.create_user(**validated_data)
+
+    class Meta: 
+        model = Permission
+        fields = ('url', 'id', 'content_type', 'codename','name')
+        # extra_kwargs = {'password': {'write_only': True}}
+
+class ContentTypeSerializer(serializers.HyperlinkedModelSerializer):
+
+    # def create(self, validated_data):
+    #     return User.objects.create_user(**validated_data)
+
+    class Meta: 
+        model = ContentType
+        fields = ('url', 'id', 'app_label', 'model')
+        # extra_kwargs = {'password': {'write_only': True}}
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+
+    # def create(self, validated_data):
+    #     return User.objects.create_user(**validated_data)
+
+    class Meta: 
+        model = Group
+        fields = ('url', 'id', 'name')
+        # extra_kwargs = {'password': {'write_only': True}}
