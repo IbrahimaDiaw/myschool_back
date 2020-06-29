@@ -32,6 +32,12 @@ urlpatterns= [
 
     path('eleves/', EleveViewList.as_view()),
     path('eleves/<int>:pk', ElevesViewElement.as_view()),
+    
+    path('parents/', ParentViewList.as_view()),
+    path('parents/<int>:pk', ParentViewDetail.as_view()),
+    
+    path('professeur/', ProfesseurViewList.as_view()),
+    path('professeur/<int>:pk', ProfesseurViewDetail.as_view()),
 
     path('remplir/', RemplireBAse),
 

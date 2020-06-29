@@ -2,7 +2,8 @@ from rest_framework import serializers
 from school.models import Etablissement
 from school.models import Batiment
 from school.models import Salle
-from .models import AnneeScolaire, Classe, Niveau, Retard,Absence, Compte,Eleve
+from school.models import Professeur
+from .models import AnneeScolaire, Classe, Niveau, Retard,Absence, Compte,Eleve,Parent
 from django.contrib.auth.models import Permission, User, Group
 from django.contrib.contenttypes.models import ContentType
 
@@ -31,6 +32,19 @@ class SalleSerializer(serializers.ModelSerializer):
                   'batiment',
                   'nom',
                   'capacite')
+
+
+#Serialisation de la classe Parent
+class ParentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model: Parent
+        fields = '__all__'
+
+#Serialisation de la classe Professeur
+class ProfesseurSerializer(serializers.ModelSerializer):
+    class Meta:
+        model: Professeur
+        fields = '__all__'
 
 #Serialisation de la classe AnneeScocailre
 class AnneeSerializer(serializers.ModelSerializer):
@@ -65,9 +79,10 @@ class AbsenceSerializer(serializers.ModelSerializer):
 class EleveSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Eleve
-            fields = ['url', 'id', 'photo', 'prenom',
-                  'nom', 'sexe', 'dateNaissance', 'lieuNaissance', 'adresse',
-                  'tel', 'nationnalite', 'etatSante', 'parcours', 'classe', 'parent', 'createdAt']
+            # fields = ('id', 'photo', 'prenom',
+            #       'nom', 'sexe', 'dateNaissance', 'lieuNaissance', 'adresse',
+            #       'tel', 'nationnalite', 'etatSante', 'parcours', 'classe', 'parent', 'createdAt')
+            fields: '__all__'
 
 #Serialisation de la classe Compte
 class CompteSerializer(serializers.HyperlinkedModelSerializer):

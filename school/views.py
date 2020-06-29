@@ -4,7 +4,8 @@ from rest_framework import generics, permissions, viewsets
 from .models import *
 from .serializers import (EtablissementSerializer, BatimentSerializer, SalleSerializer, GroupSerializer,
              ClasseSerializer,NiveauSerializer,AnneeSerializer, RetardSerializer,AbsenceSerializer, 
-             CompteSerializer, UserSerializer, PermissionSerializer,ContentTypeSerializer, EleveSerializer)
+             CompteSerializer, UserSerializer, PermissionSerializer,ContentTypeSerializer, EleveSerializer,
+             ParentSerializer, ProfesseurSerializer)
 from django.http import HttpResponse
 # from .permissions import IsAuthorOrReadOnly
 from rest_framework.permissions import IsAuthenticated
@@ -44,6 +45,26 @@ class SalleViewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthorOrReadOnly,)
     queryset = Salle.objects.all()
     serializer_class = SalleSerializer
+
+class ParentViewList(generics.ListCreateAPIView):
+    queryset = Parent.objects.all()
+    serializer_class = ParentSerializer
+
+class ParentViewDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_Parent = [IsAuthenticated]
+    queryset = Parent.objects.all()
+    serializer_class = ParentSerializer
+
+
+class ProfesseurViewList(generics.ListCreateAPIView):
+    queryset = Professeur.objects.all()
+    serializer_class = ParentSerializer
+
+class ProfesseurViewDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_Professeur = [IsAuthenticated]
+    queryset = Professeur.objects.all()
+    serializer_class = ParentSerializer
+
 
 class ClasseViewList(generics.ListCreateAPIView):
     queryset  = Classe.objects.all()
