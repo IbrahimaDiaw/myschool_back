@@ -36,8 +36,8 @@ urlpatterns= [
     path('parents/', ParentViewList.as_view()),
     path('parents/<int:pk>', ParentViewDetail.as_view()),
     
-    path('professeur/', ProfesseurViewList.as_view()),
-    path('professeur/<int:pk>', ProfesseurViewDetail.as_view()),
+    path('professeurs/', ProfesseurViewList.as_view()),
+    path('professeurs/<int:pk>', ProfesseurViewDetail.as_view()),
 
     path('remplir/', RemplireBAse),
 
