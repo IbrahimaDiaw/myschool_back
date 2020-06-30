@@ -43,7 +43,7 @@ class Parent(models.Model):
     nom = models.CharField(max_length = 80)
     adresse = models.CharField(max_length = 255)
     cin = models.IntegerField()
-    tel = models.IntegerField()
+    tel = models.CharField(max_length=15)
     createdAt = models.DateTimeField(default = timezone.now)
 
     def __str__(self):

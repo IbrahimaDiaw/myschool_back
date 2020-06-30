@@ -37,13 +37,13 @@ class SalleSerializer(serializers.ModelSerializer):
 #Serialisation de la classe Parent
 class ParentSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Parent
+        model = Parent
         fields = '__all__'
 
 #Serialisation de la classe Professeur
 class ProfesseurSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Professeur
+        model = Professeur
         fields = '__all__'
 
 #Serialisation de la classe AnneeScocailre
@@ -76,13 +76,13 @@ class AbsenceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 #Serialisation de la classe Eleve
-class EleveSerializer(serializers.HyperlinkedModelSerializer):
+class EleveSerializer(serializers.ModelSerializer):
         class Meta:
             model = Eleve
             # fields = ('id', 'photo', 'prenom',
             #       'nom', 'sexe', 'dateNaissance', 'lieuNaissance', 'adresse',
             #       'tel', 'nationnalite', 'etatSante', 'parcours', 'classe', 'parent', 'createdAt')
-            fields: '__all__'
+            fields = '__all__'
 
 #Serialisation de la classe Compte
 class CompteSerializer(serializers.HyperlinkedModelSerializer):

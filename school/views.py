@@ -63,7 +63,7 @@ class ProfesseurViewList(generics.ListCreateAPIView):
 class ProfesseurViewDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_Professeur = [IsAuthenticated]
     queryset = Professeur.objects.all()
-    serializer_class = ParentSerializer
+    serializer_class = ProfesseurSerializer
 
 
 class ClasseViewList(generics.ListCreateAPIView):
@@ -123,6 +123,7 @@ class EleveViewList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter]
     search_fields = ['prenom', 'nom']
+    
 class ElevesViewElement(generics.RetrieveUpdateDestroyAPIView):
     queryset = Eleve.objects.all()
     serializer_class = EleveSerializer

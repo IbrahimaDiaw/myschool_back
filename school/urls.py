@@ -25,19 +25,19 @@ urlpatterns= [
     path('anneescolaire/<int:pk>', AnneeViewElement.as_view()),
 
     path('retard/', RetardViewList.as_view()),
-    path('retard/<int<:pk', RetardViewElement.as_view()),
+    path('retard/<int:pk>', RetardViewElement.as_view()),
 
     path('absence', AbsenceViewList.as_view()),
     path('absence/<int:pk>', AbsenceViewElement.as_view()),
 
     path('eleves/', EleveViewList.as_view()),
-    path('eleves/<int>:pk', ElevesViewElement.as_view()),
+    path('eleves/<int:pk>', ElevesViewElement.as_view()),
     
     path('parents/', ParentViewList.as_view()),
-    path('parents/<int>:pk', ParentViewDetail.as_view()),
+    path('parents/<int:pk>', ParentViewDetail.as_view()),
     
     path('professeur/', ProfesseurViewList.as_view()),
-    path('professeur/<int>:pk', ProfesseurViewDetail.as_view()),
+    path('professeur/<int:pk>', ProfesseurViewDetail.as_view()),
 
     path('remplir/', RemplireBAse),
 
